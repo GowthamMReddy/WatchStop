@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title%}Login{% endblock %}
 {% block content %}
-<div class="container-xl card pt-3 mt-4 mb-4 bg-light" style="width: 600px;">
+<div class="row mt-4 mb-4">
+    <div class="col-lg-6 ml-5" style=" width:600px; background-color:#d6f5f5">
+      <div class="card">
+      <img src="{{url_for('static',filename='images/loginimg.jpg')}}" alt="loginimg" class="rounded" style="width:100%;"> 
+      </div>
+    </div>
+    <div class="col-lg-6 card ml-3" style="width:600px; background-color:#248f8f">
     <form method="POST">
       <h2 align="center">Login</h2>
       <div class="form-group">
@@ -25,8 +31,9 @@
         />
       </div>
       <br />
-      <button type="submit" class="btn btn-primary mb-4">Login</button>
+      <button type="submit" class="btn btn-dark text-info mb-4 float-end">Login</button>
     </form>
+    </div>
   </div>
 {% endblock %}
     

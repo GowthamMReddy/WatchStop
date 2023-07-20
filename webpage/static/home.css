@@ -1,0 +1,25 @@
+.screen_b{
+    background-color: #d6f5f5;
+}
+
+.nav-item{
+    color:#051414;
+}
+
+.nav-item .img1{
+    max-width: 140px; 
+    max-height: 100px
+
+}
+
+.navbar{
+    background-color: #248f8f;
+}
+
+.form-control{
+    background-color:#d6f5f5;
+}
+
+.ftr{
+    background-color: #248f8f;
+}

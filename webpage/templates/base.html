@@ -5,6 +5,11 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
     <link 
       rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
@@ -16,26 +21,116 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
       crossorigin="anonymous">
 
+      <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" 
+      integrity="sha512-vKanlgAxfgcT7VZSxMsoLezV9mKjC6/Af4d3qsvCUbV8zdsswQGg7SrpE+LeuVJX9jKkC4y4Iq3+UCPH7J0w1Q==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+
+
+    <link 
+       rel="stylesheet"
+       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" 
+       integrity="sha512-hN2QFnHQST8YZvY43ewSRZrE3jgmW26n8zv2+KN1/sRmU6SWWpM8wv6YDZpF6ZbO9O1hKKgYZvKj36a2Q1Ihbg==" 
+       crossorigin="anonymous" 
+       referrerpolicy="no-referrer" />
+
+       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='home.css')}}" >
+
+
     <title> {% block title %}Home{% endblock%}</title>
 
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="screen_b">
+    <nav class="navbar navbar-expand-lg navbar-secondary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
-            <div class="navbar-nav">
-                <a class="nav-item " id="login" href="/login">Login</a>
-                <a class="nav-item navlink" id="signUp" href="/signup">Sign up </a>
-                <a class="nav-item navlink" id="logout" href="/logout">Logout </a>
-                <a class="nav-item navlink" id="home" href="/">Home </a>
+          <div class="navbar-nav ml-5">
+            <a class="nav-item nav-link text-info" id="watchstop" href="/">
+              <img src="{{ url_for('static', filename='images/Watchstop1.jpg') }}"  class="rounded float-start img1" alt="img"  ></img>
+            </a>
+          </div>
+            <div class="navbar-nav ml-auto mr-5">
+                <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="home" href="/">Home </a>
+                <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="logout" href="/logout">Logout </a>
+                <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="login" href="/login">Login</a>
+                <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="signUp" href="/signup">Sign up </a>
             </div>
         </div>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=true)%}
+    {% if messages %}
+      {% for category, message in messages %}
+      {% if category == 'error' %}
+      <div class="alert alert-danger alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
     {% block content %}
 
     {% endblock %}
+    </div>
+<!-- footer of the website -->
+<footer class="text-center text-lg-start" style=" background-color: #248f8f;" >
+ <section class="mt-4">
+    <div class="container text-center text-md-start ">
+      <div class="row ">
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 mt-4">
+          <h6 class="text-uppercase fw-bold mb-4">Watch Stop</h6>
+          <p>
+            Stye Your Wrist!<br>
+            New collection of watches with top notch quality with low price.
+          </p>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mt-4">
+          <h6 class="text-uppercase fw-bold mb-4 ">
+            Products
+          </h6>
+          <p>
+            <a href="/" class="text-reset text-decoration-none">Watches</a>
+          </p>
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 mt-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset  text-decoration-none">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset  text-decoration-none">Help</a>
+          </p>
+        </div>
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p>Address : Dublin, Ireland, D15 KP80</p>
+          <p>
+           Email: info@example.com
+          </p>
+          <p> Contact: +353 0812345672</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>
+
 
    <script 
      src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
@@ -57,6 +152,17 @@
      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
      crossorigin="anonymous">
     </script>
+    <script  
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" 
+    integrity="sha512-9V7LcMv4GJ7Fgy3qJnV7m2wvzNl7If2fJz9L+dBk/krBIXBBcGv5qw5o5jZrzw1FzBJ1wIJw8DeDBBQyKjSyCQ==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+  </script>
+   <script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+   crossorigin="anonymous"
+ ></script>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"
