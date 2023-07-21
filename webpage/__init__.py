@@ -1,3 +1,4 @@
+import base64
 from os import path
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -54,7 +55,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-       from models import User
+       from .models import User
        return User.query.get(int(id))
     
 

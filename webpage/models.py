@@ -17,10 +17,12 @@ class Watches(db.Model):
 
 
 class Orders(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     order_date = db.Column(db.DateTime(timezone=True), default=func.now())
     order_count = db.Column(db.Integer, nullable=False )
     email = db.Column(db.String(100), db.ForeignKey('user.email'))
+    watch_mid= db.Column(db.String(20), db.ForeignKey('watches.watch_mid'))
+
 
 
 class User(db.Model, UserMixin):

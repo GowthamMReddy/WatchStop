@@ -54,10 +54,13 @@
             </a>
           </div>
             <div class="navbar-nav ml-auto mr-5">
+                {% if user.is_authenticated %}
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="home" href="/">Home </a>
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="logout" href="/logout">Logout </a>
+                {% else %}
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="login" href="/login">Login</a>
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="signUp" href="/signup">Sign up </a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -77,14 +80,15 @@
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
         </button>
+      </div>
       {% endif %}
       {% endfor %}
     {% endif %}
     {% endwith %}
+    
     {% block content %}
 
     {% endblock %}
-    </div>
 <!-- footer of the website -->
 <footer class="text-center text-lg-start" style=" background-color: #248f8f;" >
  <section class="mt-4">
