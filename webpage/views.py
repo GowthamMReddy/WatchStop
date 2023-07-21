@@ -9,3 +9,13 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html", user=current_user)
 
+@views.route('/admin')
+@login_required
+def admin():
+    id = current_user.id
+    if id == 1:
+        return render_template("admin.html", user=current_user)
+    else: 
+        flash("You don't have required privilleges to access admin page")
+        return render_template(url_for('views.home'))
+ 

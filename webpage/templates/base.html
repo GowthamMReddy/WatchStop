@@ -56,6 +56,9 @@
             <div class="navbar-nav ml-auto mr-5">
                 {% if user.is_authenticated %}
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="home" href="/">Home </a>
+                {% if user.id == 1 %}
+                <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="admin" href="/admin">Admin </a>
+                {% endif %}
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="logout" href="/logout">Logout </a>
                 {% else %}
                 <a class="nav-item navlink text-decoration-none ml-3 fw-bolder" id="login" href="/login">Login</a>
