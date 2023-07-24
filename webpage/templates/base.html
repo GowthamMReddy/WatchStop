@@ -170,6 +170,32 @@
    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
    crossorigin="anonymous"
  ></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+ <script type="text/javascript">
+   var csrf_token = "{{ csrf_token() }}";
+
+   $.ajaxSetup({
+       beforeSend: function(xhr, settings) {
+           if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+               xhr.setRequestHeader("X-CSRFToken", csrf_token);
+           }
+       }
+   });
+  </script>
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+
+  <script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
+  </script>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='index.js') }}"

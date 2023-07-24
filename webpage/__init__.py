@@ -1,10 +1,13 @@
 import base64
 from os import path
+import os
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_manager
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
+from flask_wtf.csrf import CSRFProtect
+import stripe
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -16,9 +19,11 @@ naming_convention = {
 db= SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 DB_NAME = "database.db"
 migrate = Migrate()
+csrf = CSRFProtect()
 
 def create_app():
     app=Flask(__name__)
+    csrf.init_app(app)
 
     @app.template_filter('b64encode')
     def base64_encode(value):
@@ -36,6 +41,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOAD_FOLDER']=r"static\uploads"
+    stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)

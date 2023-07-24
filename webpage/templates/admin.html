@@ -1,14 +1,131 @@
 {% extends "base.html" %}
 {% block title%}Admin{% endblock %}
 {% block content %}
-<div class="row mt-4 mb-4">
-    <div class="col-lg-6 ml-5" style=" width:600px; background-color:#d6f5f5">
-      <div class="card">
-      <img src="{{url_for('static',filename='images/loginimg.jpg')}}" alt="loginimg" class="rounded" style="width:100%;"> 
-      </div>
-
+ 
+<div class="container">
+    <div class="row">
+        <!---------------------------Adding New Car's------------------------------>
+        <div class="col-12 ">
+            <div class="container mt-3">
+                <div class="card " style="width:360px; align-items: center;">
+                    <img class="card-img-top" src="{{url_for('static',filename='images/Watch1.jpg')}}" alt="add_watches" style="width:100%">
+                    <div class="card-body ">
+                       <h4 class="card-title" style="color:#051414;"> Add Latest Watches</h4>
+                       <a href="#" class="btn btn-dark text-info" data-toggle="modal" data-target="#mywatch" >+ Add Watch</a>
+                    </div>
+                </div>
+            </div> 
+        </div>                    
+        <div class="modal fade" id="mywatch" tabindex="-1" role="dialog" aria-labelledby="mywatch_1" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" style="color:#051414;" id="mywatch_1">Add Watches</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form method="POST" action="/admin" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                <div class="form-group">
+                                    <label for="watch_model" class="col-form-label">Watch Model ID:</label>
+                                    <input
+                                       type="text"
+                                       class="form-control"
+                                       id="watch_mid"
+                                       name="watch_mid"
+                                       placeholder="Enter Watch Model id"
+                                       maxlength="10"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="watch_name" class="col-form-label">Watch Name:</label>
+                                    <input
+                                       type="text"
+                                       class="form-control"
+                                       id="watch_name"
+                                       name="watch_name"
+                                       placeholder="Enter Watch Name"
+                                       maxlength="150"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="watch_type" class="col-form-label">Watch Type:</label>
+                                    <input 
+                                       type="text"
+                                       class="form-control" 
+                                       id="watch_type"
+                                       name="watch_type"
+                                       placeholder="Enter Watch Type"
+                                       maxlength="6"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="watch_price" class="col-form-label">Watch Price:</label>
+                                    <input 
+                                       type="text"
+                                       class="form-control" 
+                                       id="watch_price"
+                                       name="watch_price"
+                                       placeholder="Enter Watch Price"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="watch_img" class="col-form-label">Browse Image:</label>
+                                    <input 
+                                       type="file"
+                                       class="form-control"
+                                       id="watch_img"
+                                       name="watch_img"
+                                    />
+                                </div>
+                                <div class='d-grid gap-2'>
+                                    <button type="submit" class="btn btn-dark text-info">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>                  
     </div>
-  </div>
+
+    <div class="row g-5">
+        <h1>Watches List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Watch Model</th>
+                    <th>Watch Name</th>
+                    <th>Watch Type</th>
+                    <th>Watch Price</th>
+                    <th>Image Name </th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for watch in watches %}
+                <tr>
+                    <td>{{ watch.watch_mid}}</td>
+                    <td>{{ watch.watch_name }}</td>
+                    <td>{{ watch.watch_type}}</td>
+                    <td>{{ watch.watch_price}}</td>
+                    <td>{{ watch.img_name}}</td>
+                    <td><img src="data:image/png;base64,{{ watch.img|b64encode }}" class="img-thumbnail" /></td>
+                    <td>
+                        <form method="post" action="/delete_watch">
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                          <input type="hidden" name="id" value="{{ watch.id }}">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
     
 

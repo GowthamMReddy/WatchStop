@@ -10,10 +10,10 @@
   </div>
 </div>
 <div class="row mt-4 ml-1">
-<!---{% for watch in Watches %}--->
+{% for watch in watches %}
 <div class="col-md-offset-3 col-md-4">
   <div class="card mb-4 box-shadow" style="width: 350px; height: 450px;">
-    <img class="card-img-top" src="data:watch/png;base64,{{ watch.img|b64encode }}" class="img-thumbnail" alt="{{watch.img_name}}" style="width: 350px; height: 200px;">
+    <img class="card-img-top" src="data:image/png;base64,{{ watch.img|b64encode }}" class="img-thumbnail" alt="{{watch.img_name}}" style="width: 350px; height: 200px;">
     <h3 class="card-title mx-auto">{{ watch.watch_name }}</h3>
     <div class="card-body bg-secondary text-white">
       <div class="row"> 
