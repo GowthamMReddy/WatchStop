@@ -9,6 +9,7 @@
   </div>
   <div class="col-lg-6 card ml-3" style=" width: 600px; background-color:#248f8f">
     <form method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
       <h2 class="mt-3" align="center">Sign Up</h2>
       
       <div class="form-group">

@@ -75,6 +75,19 @@ def proddesc(id):
     watch.img = base64.b64encode(watch.img).decode('utf-8')
 
     return render_template('proddesc.html', user=current_user, watch=watch)
+
+@views.route('/pay',methods=['GET','POST'])
+@login_required
+def pay():
+   flash("Your payment is successful!")
+   return render_template("success.html", user=current_user)
+
+@views.route('/homescreen',methods=['GET','POST'])
+@login_required
+def homescreen():
+    watches= Watches.query.all()
+    return redirect(url_for('views.home')) 
+    
     
     
  

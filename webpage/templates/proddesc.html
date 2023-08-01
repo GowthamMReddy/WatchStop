@@ -34,6 +34,7 @@
             </div>
             <div>
             <form action="/pay" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <script
                   src="https://checkout.stripe.com/checkout.js"
                   class="stripe-button"
