@@ -7,7 +7,7 @@
         <!---------------------------Adding New Car's------------------------------>
         <div class="col-12 ">
             <div class="container mt-3">
-                <div class="card " style="width:360px; align-items: center;">
+                <div class="card " style="width:360px; margin-left: 30%;">
                     <img class="card-img-top" src="{{url_for('static',filename='images/Watch1.jpg')}}" alt="add_watches" style="width:100%">
                     <div class="card-body ">
                        <h4 class="card-title" style="color:#051414;"> Add Latest Watches</h4>
@@ -113,7 +113,7 @@
                     <td>{{ watch.watch_type}}</td>
                     <td>{{ watch.watch_price}}</td>
                     <td>{{ watch.img_name}}</td>
-                    <td><img src="data:image/png;base64,{{ watch.img|b64encode }}" class="img-thumbnail" /></td>
+                    <td><img src="data:image/png;base64,{{ watch.img|b64encode }}" class="img-thumbnail" style="width:200px; height:120px" /></td>
                     <td>
                         <form method="post" action="/delete_watch">
                           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
