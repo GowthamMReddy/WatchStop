@@ -87,6 +87,19 @@ def pay():
 def homescreen():
     watches= Watches.query.all()
     return redirect(url_for('views.home')) 
+
+@views.route('/delete_watch', methods=['GET','POST'])
+@login_required
+def delete_watch():
+    watch_id = request.form['id']
+    watchdetails= Watches.query.get_or_404(watch_id)
+
+    # delete record from the database
+    db.session.delete(watchdetails)
+    db.session.commit()
+    flash('Watch is deleted successfully', 'success')
+    return redirect(url_for('views.admin'))
+
     
     
     
