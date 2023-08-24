@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-  <div class="card-xl mt-5" style="align-items: center;">
+  <div class="card-xl mt-5" style="align-items: center;" id="successpage">
     <form action="/homescreen" method="POST">
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
         <h4> Your order has been placed successfully!</h4>
